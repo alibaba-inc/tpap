@@ -717,7 +717,7 @@ KISSY.add(function (S, Calendar) {
                 }),
 
                 confirm: frameGroup.markFunction(function (x) {
-                    confirm(x);
+                   return confirm(x);
                 }),
 
                 kissy:true
