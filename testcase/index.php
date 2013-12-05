@@ -17,6 +17,7 @@
     <li><a href="./1.3.0/resizable.php">resizeable</a></li>
 
     <li><a href="./gallery/kscroll1.2.php">kscroll</a></li>
+    <li><a href="./gallery/sidenav1.0.php">SideNav</a></li>
     <li><a href="./1.3.0/imagezoom.php">放大镜imagezoom</a></li>
 
     <li><a href="./gallery/kcharts1.1.php">kcharts</a></li>
