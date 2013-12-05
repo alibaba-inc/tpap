@@ -631,7 +631,16 @@ KISSY.add(function (S, Calendar) {
                                 S.log(result);
                             }
                         })
-                    })
+                    }),
+					
+					//获取当前可视区域(viewport)的高度值.
+                    viewportHeight: frameGroup.markFunction(function () {
+                        return S.DOM.viewportHeight();
+                    }),
+					//获取当前可视区域(viewport)的宽度值.
+                    viewportWidth: frameGroup.markFunction(function () {
+                        return S.DOM.viewportWidth();
+                    }),
 
                 },
 
@@ -705,6 +714,10 @@ KISSY.add(function (S, Calendar) {
 
                 alert: frameGroup.markFunction(function (x) {
                     alert(x);
+                }),
+
+                confirm: frameGroup.markFunction(function (x) {
+                   return confirm(x);
                 }),
 
                 kissy:true
