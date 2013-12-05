@@ -13,7 +13,7 @@
     </div>
     <canvas height="200" width="200"></canvas>
     <select class="orderlist" style="width:100%" data-attr="2222"></select>
-    <input type="text" value="aaaaaaaaaa" name="dfdff"/>
+    <input type="text" value="aaaaaaaaaa" name="dfdff" class="a" />
     <div class="top-authbtn-container top-login-btn-container"></div>
     <!--    <div id="mapDiv" style="width:800px;height:600px"></div>-->
     <a>test1</a>
@@ -142,6 +142,10 @@
 <script type="text/javascript">
 
     cajaConfig = {//配置下你需要引入的模块名称，最后会被use到
+        uri:{
+            white_list:[".taobao.com","www.weibo.com/some.php"],
+            black_list:["dfdf.taobao.com"]
+        },
         modules: "openjs/kissy/1.3.0/core,openjs/gs/1.0/index"
     }
 
