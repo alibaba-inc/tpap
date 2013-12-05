@@ -20,7 +20,7 @@ KISSY.add(function (S, SideNav) {
 
             var array = [];
             for (var rules in cfg.map.rule) {
-                console.log(rules);
+                //console.log(rules);
                 array.push(rules);
             }
 
