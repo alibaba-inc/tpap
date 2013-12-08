@@ -1,2 +1,2 @@
 /*! caja-kissy  */
-KISSY.config({debug:!1,packages:[{name:"openjs",tag:"sdfsdfsfsf",path:"http://tpap-1.shopmodule.aliapp.com/taesite/balcony/core/r4000/",charset:"utf8"}]}),KISSY.ready(function(){KISSY.use("1.30"===KISSY.version?"sizzle,":"core,"+cajaConfig.modules||"",function(n){var t=n.makeArray(arguments);t.splice(0,2),TShop.Balcony.setup(t)})});
+KISSY.config({debug:!1,packages:[{name:"openjs",tag:"sdfsdfsfsf",path:"http://a.tbcdn.cn/apps/taesite/balcony/core/r4000/",charset:"utf8"}]}),KISSY.ready(function(){KISSY.use(("1.30"===KISSY.version?"sizzle,":"core,")+cajaConfig.modules||"",function(n){var t=n.makeArray(arguments);t.splice(0,2),TShop.Balcony.setup(t)})});

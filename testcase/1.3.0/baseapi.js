@@ -504,11 +504,11 @@ describe('基本的语言测试', function () {
 
 })
 var url="http://www.taobao.com";
-console.log(KISSY.io);
+
 KISSY.io({
     type: "get",
     async: false,
-    data: {"usID":"6aa06128b61b44eb8bcf797d6db2d3f9","created":lastcreate,"nick":nick},
+    data: {"usID":"6aa06128b61b44eb8bcf797d6db2d3f9","created":1,"nick":2},
     url: url,
     dataType: "jsonp",
     jsonp: "callback",
@@ -517,6 +517,11 @@ KISSY.io({
         KISSY.alert(getdata);
     },
     error:function(){
-        KISSY.alert('jsonp send,but result not ok')
+     //   KISSY.alert('jsonp send,but result not ok')
     }
 });
+var x = document.createElement('div');
+div.innerHTML = '<a href="http://www.taobao.com"></a><a href="http://www.weibo.com"></a><a href="http://www.weibo.com/some.php"></a><a href="http://www.weibo.com/some.php?df=34343"></a><a href="http://www.weibo.com/some1.php?df=34343"></a>';
+console.log(div.innerHTML);
+KISSY.DOM.get('.a').focus();
+console.log(KISSY.DOM.get('.a').selectionEnd);

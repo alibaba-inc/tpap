@@ -7,7 +7,7 @@
 <?php if(isset($_GET["__dev__"])) { ?>
 <script type="text/javascript" src="../../../caja/ant-lib/com/google/caja/plugin/caja<?php echo isset($_GET["__mobile__"])?"-mobile":""; ?>.js"></script>
 <?php } else { ?>
-<script type="text/javascript" src="http://a.tbcdn.cn/apps/taesite/balcony/core/r4000/caja/caja-mobile-min.js"></script>
+<script type="text/javascript" src="http://a.tbcdn.cn/apps/taesite/balcony/core/r4000/caja/caja-mobile.js"></script>
 <?php } ?>
 <script type="text/javascript" src="../../assets/base/caja-util.js"></script>
 <script type="text/javascript" src="../../assets/base/caja-log.js"></script>

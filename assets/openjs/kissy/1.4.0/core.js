@@ -19,14 +19,40 @@ KISSY.add(function (S) {
         /**
          * untame 属性
          */
+
+        function SafeAnim(param){
+            this.inner = S.Anim.apply(S.Anim,param);
+        }
+
+        S.augment(SafeAnim,{
+            run: function(){
+                this.inner.run();
+            },
+            stop: function(){
+                this.inner.stop();
+            },
+            isRunning: function(){
+                return this.inner.isRunning();
+            },
+            isPaused: function(){
+                this.inner.isPaused();
+            },
+            pause: function(){
+                this.inner.pause();
+            },
+            resume: function(){
+                this.inner.resume();
+            }
+        })
+
             // 声明外部类库构造器以及函数
-        frameGroup.markCtor(S.Anim);
-        frameGroup.grantMethod(S.Anim, "run");
-        frameGroup.grantMethod(S.Anim, "stop");
-        frameGroup.grantMethod(S.Anim, "isRunning");
-        frameGroup.grantMethod(S.Anim, "isPaused");
-        frameGroup.grantMethod(S.Anim, "pause");
-        frameGroup.grantMethod(S.Anim, "resume");
+        frameGroup.markCtor(SafeAnim);
+        frameGroup.grantMethod(SafeAnim, "run");
+        frameGroup.grantMethod(SafeAnim, "stop");
+        frameGroup.grantMethod(SafeAnim, "isRunning");
+        frameGroup.grantMethod(SafeAnim, "isPaused");
+        frameGroup.grantMethod(SafeAnim, "pause");
+        frameGroup.grantMethod(SafeAnim, "resume");
 
         /**
          * 链式写 需要注意的是，避免暴露原生dom节点给外部
@@ -492,6 +518,7 @@ KISSY.add(function (S) {
             };
             SafeNodeList.prototype.one = function (param) {
                 //kissy中只有one，all，end会出现__parent
+                debugger;
                 var result = new SafeNodeList(this.inner.one(param));
                 if(this.inner.one(param).__parent){
                     result.inner.__parent = this.inner.one(param).__parent;
@@ -630,6 +657,13 @@ KISSY.add(function (S) {
 
                     }),
 
+                    viewportHeight:frameGroup.markFunction(function () {
+                            return S.DOM.viewportHeight();
+                    }),
+                    viewportWidth:frameGroup.markFunction(function () {
+                        return S.DOM.viewportWidth();
+                    }),
+
                     css: frameGroup.markFunction(function (s, name, value) {
                         var el = query(s);
                         S.each(el,function(v,k){
@@ -696,7 +730,10 @@ KISSY.add(function (S) {
                     if (S.isObject(args[1])) {
                         args[1] = cajaAFTB.untame(args[1]);
                     }
-                    return S.Anim.apply(window, args);
+                   /* if(!S.isUndefined(args[4])){
+                        args[4] = frameGroup.markFunction(args[4]);
+                    }*/
+                    return new SafeAnim(args);
                 }),
 
                 JSON: {
@@ -709,8 +746,9 @@ KISSY.add(function (S) {
                     })
                 },
 
-                all: frameGroup.markFunction(function () {
-                    return new SafeNodeList(query(arguments[0]));
+                all: frameGroup.markFunction(function (a) {
+                    var p = KISSY.makeArray(arguments)
+                    return new SafeNodeList(p[0]);
                 }),
 
                 kissy:true

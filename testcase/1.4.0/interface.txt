@@ -1,7 +1,0 @@
-{
-    "status":1,
-    "message":"",
-    "data":{
-        "message":"\u4F60\u4E2D\u4E86\u4E00\u542C\u53EF\u4E50"
-    }
-}

@@ -12,7 +12,7 @@ KISSY.config(
     }
 );
 KISSY.ready(function () {
-    KISSY.use(KISSY.version==="1.30"? "sizzle," :"core,"+cajaConfig.modules || "", function (S) {
+    KISSY.use((KISSY.version==="1.30"? "sizzle," :"core,")+cajaConfig.modules || "", function (S) {
         var adapterArray = S.makeArray(arguments);
         adapterArray.splice(0, 2);
         TShop.Balcony.setup(adapterArray);

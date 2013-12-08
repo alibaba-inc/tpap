@@ -59,6 +59,9 @@
                 , ".tbcdn.cn"
                 , ".tmall.com"
                 , ".hitao.com"
+                , "service.weibo.com/share/share.php"
+                , "/test/csv/"
+                , "/css/main/xxx.css"
             ], black_list: [
                 "s.click.alimama.com"
                 , "gouwu.alimama.com"
@@ -95,8 +98,10 @@
 
         var protocolRex = /^http[s]?:\/\//;
         //not start with http or https protocol
-        if (0 === uri.length || !(protocolRex.test(uri))) {
-            return;
+        if(uri.substring(0,1) != '/'){
+            if (0 === uri.length || !(protocolRex.test(uri))) {
+                return;
+            }
         }
 
         if ("href" === hints.XML_ATTR) {
@@ -107,16 +112,40 @@
                 }
             }
 
-            //find the hostname
-            var tUri = uri.replace(protocolRex, "")
-                , lastSlashPos = tUri.lastIndexOf("/")
-                , hostname = (-1 === lastSlashPos) ? tUri : tUri.substring(0, lastSlashPos);
 
-            //check whether the uri is in whitelist
-            for (var i = 0, l = URI_RULE.white_list.length; i < l; i++) {
-                if (-1 !== hostname.indexOf(URI_RULE.white_list[i])) { //not in whitelist
-                    return uri;
+            //find the hostname
+            if(uri.substring(0,1)!='/'){
+
+                var tUri = uri.replace(protocolRex, "")+'/',
+                    lastSlashPos = tUri.lastIndexOf("/"),
+                    hostname = (-1 === lastSlashPos) ? tUri : tUri.substring(0, lastSlashPos),
+                    _hostname=hostname.match(/(.*?[.]){2}/)[0].length,
+                    _Mhostname=hostname.substring(hostname.indexOf('.'),_hostname);
+
+                for (var i = 0, l = URI_RULE.white_list.length; i < l; i++) {
+                
+                    //check whether the uri is in main url
+                    if (-1 !== URI_RULE.white_list[i].indexOf(_Mhostname)) { //not in main url
+                    
+                        //check whether the uri is in whitelist
+                        for (var i = 0, l = URI_RULE.white_list.length; i < l; i++) {
+                            //not in whitelist
+                            if (-1 !== hostname.indexOf(URI_RULE.white_list[i])) { 
+                                return uri;
+                            }
+                        }
+                    }
                 }
+
+            }
+            else{
+                //check whether the uri is in whitelist
+                for (var i = 0, l = URI_RULE.white_list.length; i < l; i++) {
+                    //not in whitelist
+                    if (-1 !== uri.indexOf(URI_RULE.white_list[i])) {
+                        return uri;
+                    }
+                }                
             }
 
             return;
