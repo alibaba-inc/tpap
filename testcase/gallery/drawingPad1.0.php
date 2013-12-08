@@ -17,6 +17,7 @@
         这里的内容会被清除，载入canvas.
     </div>
 
+    <!-- <input type="file" id="J_selectFile" /> -->
     <div class="log"></div>
 
     <div class="right">
@@ -41,6 +42,8 @@
                 <td class="thumbImg"></td>
                 <td class="action act-active"><a class="all_cancel" href="#">退出交互</a></td>
                 <td class="action act-cancel"><a class="getData" href="#">获取数据</a></td>
+                <td class="action act-cancel"><a class="getLayerInfo" href="#">获取图层数据</a></td>
+                <td class="action act-cancel"><a class="setPara" href="#">设置旋转和缩放</a></td>
             </tr>
         </table>
     </div>

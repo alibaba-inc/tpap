@@ -58,6 +58,16 @@ S.all(".all_cancel").on("click",function(){
     drawingPad.deactiveInteract();  //退出所有图层的交互模式
 });
 
+S.all(".getLayerInfo").on("click",function(){
+    S.log(drawingPad.getLayerInfo(itemLayer2));
+    S.log(drawingPad.getLayerInfo());
+});
+
+S.all(".setPara").on("click",function(){
+    drawingPad.setLayerPara(itemLayer2,"rotate",180); //[-180,180]
+    drawingPad.setLayerPara(itemLayer2,"scale",7); //大于0
+});
+
 //获取合并后的数据，并在新窗口中打开预览
 S.all(".getData").on("click",function(){
 

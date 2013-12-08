@@ -38,11 +38,17 @@ KISSY.add(function(S, DrawingPad) {
                 return this.inner.getMergedData( frameGroup.markFunction(function(data){
                     callback.call(null,data);
                 }),delay);
+            },
+            getLayerInfo:function(layerIndex){
+                return this.inner.getLayerInfo(layerIndex);
+            },
+            setLayerPara:function(layerIndex,paraName,paraValue){
+                this.inner.setLayerPara(layerIndex,paraName,paraValue);             
             }
         });
 
         frameGroup.markCtor(SafeDrawingPad);
-        S.each(['addLayer','activeInteract','deactiveInteract','getMergedData'], function(fn) {
+        S.each(['addLayer','activeInteract','deactiveInteract','getMergedData','getLayerInfo','setLayerPara'], function(fn) {
             frameGroup.grantMethod(SafeDrawingPad, fn);
         });
 
