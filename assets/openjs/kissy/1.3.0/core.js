@@ -440,6 +440,10 @@ KISSY.add(function (S, Calendar) {
             };
 
             SafeNodeList.prototype.fire = function () {
+                var p = arguments[1];
+                p = S.isObject(p) || {};
+                p.isFromIsv = true;
+                arguments[1] = p;
                 this.inner.fire.apply(this.inner,arguments);
                 return this;
             };
@@ -683,8 +687,11 @@ KISSY.add(function (S, Calendar) {
                     remove: Event_Remove,
                     detach: Event_Remove,
                     delegate: Event_Delegate,
-                    fire: frameGroup.markFunction(function (s, event) {
-                        S.Event.fire(query(s), event);
+                    fire: frameGroup.markFunction(function (s, event,p) {
+                        //p 如果存在，必须是一个对象
+                        p = S.isObject(p) || {};
+                        p.isFromIsv = true;
+                        S.Event.fire(query(s), event,p);
                     })
                 },
 
