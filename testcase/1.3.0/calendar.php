@@ -15,6 +15,7 @@
      cajaConfig={//配置下你需要引入的模块名称，最后会被use到
          modules:"openjs/kissy/1.3.0/core,openjs/kissy/1.3.0/calendar"
      }
+	 KISSY.Event.on('div','click',function(e){console.log(e);});
 
 </script>
 

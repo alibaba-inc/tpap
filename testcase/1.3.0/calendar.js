@@ -8,5 +8,9 @@ var cal = new Calendar('.calendar', {
     }
 );
 
+KISSY.Event.on('div','click',function(e){
+	console.log(e);
+})
+KISSY.Event.fire('div','click',{aa:1111});
 
-window.open('http://www.taobao.com/');
+//window.open('http://www.taobao.com/');

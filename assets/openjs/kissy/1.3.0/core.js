@@ -467,7 +467,7 @@ KISSY.add(function (S) {
 
             SafeNodeList.prototype.fire = function () {
                 var p = arguments[1];
-                p = S.isObject(p) || {};
+				p = S.isObject(p) ? p : {};
                 p.isFromIsv = true;
                 arguments[1] = p;
                 this.inner.fire.apply(this.inner,arguments);
@@ -716,7 +716,7 @@ KISSY.add(function (S) {
                     delegate: Event_Delegate,
                     fire: frameGroup.markFunction(function (s, event,p) {
                         //p 如果存在，必须是一个对象
-                        p = S.isObject(p) || {};
+                        p = S.isObject(p) ? p : {};
                         p.isFromIsv = true;
                         S.Event.fire(query(s), event,p);
                     })
