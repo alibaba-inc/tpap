@@ -1,0 +1,1 @@
+KISSY.Event.fire('.sns-widget','click')

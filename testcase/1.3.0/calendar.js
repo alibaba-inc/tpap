@@ -1,5 +1,5 @@
 
-
+console.log(+new Date())
 
 var Calendar = KISSY.Calendar;//日历组件默认在KISSY的命名空间下
 var cal = new Calendar('.calendar', {
@@ -7,3 +7,6 @@ var cal = new Calendar('.calendar', {
         minDate: new Date()
     }
 );
+
+
+window.open('http://www.taobao.com/');

@@ -51,12 +51,12 @@ KISSY.add(function (S) {
 
         //触发scroll
         (function () {
-            GS.fireListener.Fncs['windowScroll'] = function(config){
+            GS.fireListener.Fncs['windowScroll'] = function (config) {
                 config.props = config.props || {};
                 var props = {};
-                props.scrollTop = config.props.scrollTop ;
+                props.scrollTop = config.props.scrollTop;
 
-                KISSY.Anim(window,props,config.duration,config.easing).run();
+                KISSY.Anim(window, props, config.duration, config.easing).run();
             }
         })();
 
@@ -183,4 +183,8 @@ KISSY.add(function (S) {
 
     return init;
 
+}, {
+    requires: [
+        'core'
+    ]
 });

@@ -3,7 +3,7 @@
 <head>
 <meta charset='utf-8'/>
 <title></title>
-<script type="text/javascript" src="http://g.tbcdn.cn/kissy/k/1.3.0/kissy.js"></script>
+<script type="text/javascript" src="http://g.tbcdn.cn/kissy/k/1.3.0/kissy-min.js"></script>
 <?php if(isset($_GET["__dev__"])) { ?>
 <script type="text/javascript" src="../../../caja/ant-lib/com/google/caja/plugin/caja.js"></script>
 <?php } else { ?>

@@ -100,7 +100,7 @@ var shop_log = (function (win, S) {
             return;
         }
         var data = prepareData(msg, filename);
-        goldlog.emit('caja_log', data);
+        window.goldlog && goldlog.emit && goldlog.emit('caja_log', data);
     }
 
     /**
@@ -113,7 +113,7 @@ var shop_log = (function (win, S) {
             return;
         }
         var data = prepareData(msg, iframe);
-        goldlog.emit('caja_log', data);
+        window.goldlog && goldlog.emit && goldlog.emit('caja_log', data);
     }
 
     /**
@@ -128,7 +128,7 @@ var shop_log = (function (win, S) {
             return;
         }
         var data = prepareMonitorData(type, desc, prototypeid, time_consume);
-        goldlog.emit('caja_per', data);
+        window.goldlog && goldlog.emit && goldlog.emit('caja_per', data);
     }
 
 

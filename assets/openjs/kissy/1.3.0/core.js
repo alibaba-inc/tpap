@@ -1,7 +1,7 @@
 /**
  * @fileOverview core组件的安全适配器
  */
-KISSY.add(function (S, Calendar) {
+KISSY.add(function (S) {
     var DOM = S.DOM,
         Event = S.Event;
 
@@ -35,11 +35,7 @@ KISSY.add(function (S, Calendar) {
          */
             // 声明外部类库构造器以及函数
 
-        function SafeNodeList(selector) {
-            this.inner = S.all(selector)
-        }
 
-        frameGroup.markCtor(SafeNodeList);
         var nodeFuncs = ('index getDOMNodes getDOMNode end equals add item slice scrollTop scrollLeft height width' +
             ' appendTo prependTo insertBefore insertAfter animate stop run pause resume isRunning isPaused' +
             ' show hide toggle fadeIn fadeOut' +
@@ -80,6 +76,36 @@ KISSY.add(function (S, Calendar) {
          * @return {Object} 实Fs际的组件对象
          */
         return function (param) {
+
+
+            function SafeNodeList(selector) {
+                if(typeof selector == 'string'){
+                    if(selector.indexOf('<')>=0){
+                        selector = cajaAFTB.sanitizeHtml(selector);
+                    }
+                    this.inner = S.all(selector,param.mod)
+                }else{
+                    try{
+                        S.get(selector,'body');  //兼容ie6,7下bug
+                    }catch(e){
+                        this.inner = S.all(selector);
+                        return;
+                    }
+                    if(S.get(selector,'body')){
+                        if(S.get(selector,param.mod)){
+                            this.inner = S.all(selector,param.mod);
+                        }else{
+                            if(selector == param.mod){
+                                this.inner = S.all(param.mod);
+                            }else{
+                                S.log('error: the require dom is out of the sandbox!');
+                            }
+                        }
+                    }else{
+                        this.inner = S.all(selector);
+                    }
+                }
+            }
 
             // 限定模块的选择器范围，所以获取节点的api，均需要通过该函数获取一下
             // 将范围限定到caja容器之内
@@ -512,6 +538,7 @@ KISSY.add(function (S, Calendar) {
                 }
             };
 
+            frameGroup.markCtor(SafeNodeList);
 
             S.each(nodeFuncs, function (func) {
                 frameGroup.grantMethod(SafeNodeList, func);
@@ -632,7 +659,7 @@ KISSY.add(function (S, Calendar) {
                             }
                         })
                     }),
-					
+
 					//获取当前可视区域(viewport)的高度值.
                     viewportHeight: frameGroup.markFunction(function () {
                         return S.DOM.viewportHeight();
@@ -640,7 +667,7 @@ KISSY.add(function (S, Calendar) {
 					//获取当前可视区域(viewport)的宽度值.
                     viewportWidth: frameGroup.markFunction(function () {
                         return S.DOM.viewportWidth();
-                    }),
+                    })
 
                 },
 
@@ -709,7 +736,7 @@ KISSY.add(function (S, Calendar) {
                 },
 
                 all: frameGroup.markFunction(function () {
-                    return new SafeNodeList(query(arguments[0]));
+                    return new SafeNodeList(arguments[0]);
                 }),
 
                 alert: frameGroup.markFunction(function (x) {
@@ -729,5 +756,5 @@ KISSY.add(function (S, Calendar) {
     return init;
 
 }, {
-    requires: ['core']
+    requires: ['core','sizzle']
 });

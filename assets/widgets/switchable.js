@@ -32,68 +32,68 @@ KISSY.add('init-countdown-widgets', function(S){
     Core.prototype = {
 
         // 计算时间
-        _countTime: function(finish){
+        _countTime: function (finish) {
             var self = this, cfg = self.config,
                 begin = cfg.timeBegin, end = 0;
-            if(/^(\d{4})\-(\d{1,2})\-(\d{1,2})(\s+)(\d{1,2}):(\d{1,2}):(\d{1,2})$/ig.test(finish.replace(/\./g,"-"))){
+            if (/^(\d{4})\-(\d{1,2})\-(\d{1,2})(\s+)(\d{1,2}):(\d{1,2}):(\d{1,2})$/ig.test(finish.replace(/\./g, "-"))) {
                 var d = finish.match(/\d+/g);
-                finish = new Date(d[0],d[1]-1,d[2],d[3],d[4],d[5]);
-            }else if(/^\d+&/.test(finish)){
+                finish = new Date(d[0], d[1] - 1, d[2], d[3], d[4], d[5]);
+            } else if (/^\d+&/.test(finish)) {
                 finish = parseInt(finish);
             }
 
-            if(S.isNull(begin) || isNaN(begin) || begin <= 0){
-                if(S.isDate(finish)){
-                    end = finish-new Date();
-                }else{
+            if (S.isNull(begin) || isNaN(begin) || begin <= 0) {
+                if (S.isDate(finish)) {
+                    end = finish - new Date();
+                } else {
                     end = parseInt(finish);
                 }
-            }else{
-                end = (typeof begin == typeof finish)?finish-begin:0;
+            } else {
+                end = (typeof begin == typeof finish) ? finish - begin : 0;
             }
-            if(!S.isNumber(end) || end<0){
+            if (!S.isNumber(end) || end < 0) {
                 end = 0;
             }
             self.timeRemain = end;
         },
 
-        getRemain: function(){
-            var time = parseInt(this.timeRemain-(new Date()-this.timeStart));
-            if(isNaN(time) || time<=0){
+        getRemain: function () {
+            var time = parseInt(this.timeRemain - (new Date() - this.timeStart));
+            if (isNaN(time) || time <= 0) {
                 return 0;
-            }else{
+            } else {
                 return time;
             }
         },
 
-        format: function(time){
+        format: function (time) {
             var units = Array.prototype.slice.call(arguments, 1);
             var result = [];
-            S.each(units,function(unit){
-                if(timeUnits[unit]){
-                    var t = Math.floor(time/timeUnits[unit]);
-                    time = time - t*timeUnits[unit];
+            S.each(units, function (unit) {
+                if (timeUnits[unit]) {
+                    var t = Math.floor(time / timeUnits[unit]);
+                    time = time - t * timeUnits[unit];
                     result.push(t);
                 }
             });
             return result;
         },
 
-        fetch: function(interval,run,finish){
+        fetch: function (interval, run, finish) {
             var self = this,
-                timer = setInterval(function(){
+                timer = setInterval(function () {
                     var remain = self.getRemain();
-                    if(remain>0){
-                        run && run.call(self,remain);
-                    }else{
-                        run && run.call(self,0);
+                    if (remain > 0) {
+                        run && run.call(self, remain);
+                    } else {
+                        run && run.call(self, 0);
                         finish && finish.call(self);
                         clearInterval(timer);
                     }
-                },interval);
+                }, interval);
         }
 
-    }
+    };
 
 
 

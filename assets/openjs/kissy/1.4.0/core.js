@@ -61,11 +61,7 @@ KISSY.add(function (S) {
          */
             // 声明外部类库构造器以及函数
 
-        function SafeNodeList(selector) {
-            this.inner = S.all(selector)
-        }
 
-        frameGroup.markCtor(SafeNodeList);
         var nodeFuncs = ('index getDOMNodes getDOMNode end equals add item slice scrollTop scrollLeft height width' +
             ' appendTo prependTo insertBefore insertAfter animate stop run pause resume isRunning isPaused' +
             ' show hide toggle fadeIn fadeOut' +
@@ -102,6 +98,12 @@ KISSY.add(function (S) {
          * @return {Object} 实Fs际的组件对象
          */
         return function (param) {
+
+            function SafeNodeList(selector) {
+                this.inner = S.all(selector,param.mod)
+            }
+
+            frameGroup.markCtor(SafeNodeList);
 
             // 限定模块的选择器范围，所以获取节点的api，均需要通过该函数获取一下
             // 将范围限定到caja容器之内

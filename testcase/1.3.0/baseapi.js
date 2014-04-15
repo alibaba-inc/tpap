@@ -1,8 +1,8 @@
 var div = document.createElement("div");
 
-div.innerHTML = "<div data-id='fff'>df</div>"
+div.innerHTML = '<div style="font-family:serif; " data-id="fff">df</div>';
 
-
+console.log(div.innerHTML+1);
 
 describe('对象基本方法和字符串测试', function () {
 

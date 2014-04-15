@@ -66,9 +66,10 @@ $x = str_replace('&gt;','>',$x);
 $x = str_replace("\\\\\"", "\\\"",$x);
 
 
+
 echo $x;
 
-$file = fopen($filePath."caja","w");
-fwrite($file,$x);
-fclose($file);
+//$file = fopen($filePath."caja","w");
+//fwrite($file,$x);
+//fclose($file);
 ?>
