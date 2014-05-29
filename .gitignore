@@ -10,6 +10,7 @@
 .iws
 *~
 ~*
+**/*.jscaja
 *.diff
 *.patch
 *.bak
