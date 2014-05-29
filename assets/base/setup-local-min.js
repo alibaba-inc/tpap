@@ -1,2 +1,0 @@
-/*! caja-kissy  */
-KISSY.config({debug:!0,packages:[{name:"openjs",tag:"201305121227",path:"../../assets",charset:"utf8"}]}),KISSY.ready(function(){KISSY.use(("1.30"===KISSY.version?"sizzle,":"core,")+cajaConfig.modules||"",function(t){var n=t.makeArray(arguments);n.splice(0,2),TShop.Balcony.setup(n,function(){jasmine.getEnv().addReporter(new jasmine.TrivialReporter),jasmine.getEnv().execute()})})});

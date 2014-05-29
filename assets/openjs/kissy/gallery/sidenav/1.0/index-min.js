@@ -1,2 +1,0 @@
-/*! caja-kissy  */
-KISSY.add("openjs/kissy/gallery/sidenav/1.0/index",function(t,n){function e(e){function r(e,r){this.mod=r;var i=cajaAFTB.untame(e);i.node=t.get(i.node,r),i.top.node=t.get(i.top.node,r),i.when.node=t.get(i.top.node,r);var o=[];for(var a in i.map.rule)o.push(a);for(var s in o)i.map[o[s]]=t.get(i.map.rule[o[s]],r);this.inner=new n(i)}return function(n){return{SideNav:e.markFunction(function(){var e=t.makeArray(arguments)[0];return new r(e,n.mod)}),kissy:!0}}}return t.DOM,t.Event,e},{requires:["gallery/sideNav/1.0/index"]});
